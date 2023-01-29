@@ -1,0 +1,46 @@
+{% extends './modelo.html' %}
+
+{% block title %}
+<title>PetsApp: Servicios</title>
+{% endblock %}
+
+{% block body %}
+<h2>Servicios registrados:</h2>
+        {% for s in servicios %}
+        <ul>
+        Servicio: {{s.servicio}} | Precio: {{s.precio}} | Ciudad: {{s.ciudad}}
+        <td><a href="/editarServicio/{{s.servicio}}" class="btn btn-info">Editar</a></td>
+        <td><a href="/eliminarServicio/{{s.servicio}}" class="btn btn-danger">Eliminar</a></td>
+        </ul>
+        {% endfor %}
+
+<div class="container py-3 px-0">
+        <div class="row">
+                <div class="col- fit-content">
+                <div class="card">
+                        <div class="card-body" style="width: fit-content;">
+                        <form action="/registrarServicio/" method="POST"> {% csrf_token %}
+                                <div class="form-group">
+                                <h5>Servicio</h5>
+                                <input type="text" id="txtServicio" name="txtServicio">
+                                </div>
+                                <div class="form-group">
+                                <h5>Precio</h5>
+                                <input type="text" id="txtPrecio" name="txtPrecio">
+                                </div>
+                                <div class="form-group">
+                                <h5>Ciudad</h5>
+                                <input type="text" id="txtCiudad" name="txtCiudad">
+                                </div>
+                                <div class="container py-3 px-0">
+                                <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                                </div>
+                                </div>
+                        </form>
+                        </div>
+                </div>
+                </div>
+        </div>
+</div>
+{% endblock %}
